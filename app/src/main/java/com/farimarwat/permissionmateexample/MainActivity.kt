@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         mContext = this
+
         val pm = PermissionMate.Builder(this)
             .setPermissions(
                 mutableListOf(
