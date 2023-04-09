@@ -7,7 +7,9 @@ In addition to simplifying the management of permissions, PermissionMat also pro
 Create the instance of PermissionMate in create method
 ```
 val pm = PermissionMate.Builder(this)
-            .setPermissions(listOf(Manifest.permission.CAMERA))
+            .setPermissions(listOf(PMate(
+                        Manifest.permission.CALL_PHONE,
+                        false,"Phone call permission is required to work app correctly")))
             .build()
 ```
 Next call start() on any click listener button
@@ -117,7 +119,9 @@ PermissionMateListener {
 
 #### Change Log
 **Version 1.1**
+
 Minor bugs fixed
 
 **Version 1.0**
+
 Initial release
