@@ -20,7 +20,7 @@ pm.start()
 
 ### Implementation
 ```
-implementation "io.github.farimarwat:permissionmate:1.1"
+implementation "io.github.farimarwat:permissionmate:1.2"
 ```
 
 ### Step 1 (Place permissions in manifest file)
@@ -34,11 +34,12 @@ implementation "io.github.farimarwat:permissionmate:1.1"
 
 ### Step 2 (Create instance of PermissionMate inside create)
 ```
+lateinit var pm:PermissionMate
  override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         mContext = this
-        val pm = PermissionMate.Builder(this)
+         pm = PermissionMate.Builder(this)
             .setPermissions(
                 mutableListOf(
                     PMate(
@@ -87,7 +88,14 @@ Finaly call start():
             pm.start()
         }
 ```
-
+### To avoid memory leaks:
+Kindly call pm.dispose() on onDestroy() method of the activity. So it will prevent from memory leaks.
+```
+override fun onDestroy() {
+        super.onDestroy()
+        pm.dispose()
+    }
+```
 ### Documentation
 
 #### PMate Data Class
@@ -118,6 +126,12 @@ PermissionMateListener {
 ```
 
 #### Change Log
+**Version 1.2**
+
+A Crash fixed. Reported by (<a href="https://www.linkedin.com/in/wajahat-khan-598132153/">Wajahat Khan</a>)
+
+Lifecycleevent added to detect permission on resume, getting back from settings.
+
 **Version 1.1**
 
 Minor bugs fixed
