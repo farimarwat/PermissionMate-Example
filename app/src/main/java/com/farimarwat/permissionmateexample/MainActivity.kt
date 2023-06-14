@@ -17,12 +17,13 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     lateinit var mContext: Context
+    lateinit var pm:PermissionMate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         mContext = this
 
-        val pm = PermissionMate.Builder(this)
+        pm = PermissionMate.Builder(this)
             .setPermissions(
                 mutableListOf(
                     PMate(
@@ -63,5 +64,10 @@ class MainActivity : AppCompatActivity() {
 
             pm.start()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        pm.dispose()
     }
 }
